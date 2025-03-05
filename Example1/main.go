@@ -34,12 +34,17 @@ func uniqueArrayDifference(arr1, arr2 []string) []string {
 	return result
 }
 
+func arrayProcess(arr1, arr2 []string) (result1 []string, result2 []string) {
+	result1 = uniqueArray(arr1, arr2)
+	result2 = uniqueArrayDifference(arr1, arr2)
+	return result1, result2
+}
+
 func main() {
 	arr1 := []string{"a", "b", "c"}
 	arr2 := []string{"b", "c", "d"}
 
-	unionResult := uniqueArray(arr1, arr2)
-	diffResult := uniqueArrayDifference(arr1, arr2)
+	unionResult, diffResult := arrayProcess(arr1, arr2)
 
 	fmt.Println("Input Arr 1", arr1)
 	fmt.Println("Input Arr 2", arr2)
