@@ -18,22 +18,28 @@ func processArrays(arr1, arr2 []string) ([]string, []string) {
 		countMap[arr2[i]]++
 	}
 
-	keys := make([]string, len(countMap))
-	index := 0
-	mapKeys := make([]string, 0, len(countMap))
-	for k := range countMap {
-		mapKeys = append(mapKeys, k)
+	mapKeys := make([]string, len(countMap))
+	keysIndex := 0
+	keysArray := make([]string, 0, len(countMap)) // Temporary array
+
+	keyList := make([]string, 0, len(countMap))
+	for key := range countMap {
+		keyList = append(keyList, key)
 	}
+
+	for i := 0; i < len(keyList); i++ {
+		keysArray = append(keysArray, keyList[i])
+	}
+
+	for i := 0; i < len(keysArray); i++ {
+		mapKeys[keysIndex] = keysArray[i]
+		keysIndex++
+	}
+
+	sort.Strings(mapKeys)
 
 	for i := 0; i < len(mapKeys); i++ {
-		keys[index] = mapKeys[i]
-		index++
-	}
-
-	sort.Strings(keys)
-
-	for i := 0; i < len(keys); i++ {
-		key := keys[i]
+		key := mapKeys[i]
 		if countMap[key] == 1 {
 			diffResult = append(diffResult, key)
 		}
