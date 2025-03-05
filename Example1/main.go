@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func processArrays(arr1, arr2 []string) ([]string, []string) {
 	countMap := make(map[string]int)
