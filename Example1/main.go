@@ -7,15 +7,24 @@ func processArrays(arr1, arr2 []string) ([]string, []string) {
 	var uniqueResult []string
 	var diffResult []string
 
-	for _, val := range arr1 {
-		countMap[val]++
+	for i := 0; i < len(arr1); i++ {
+		countMap[arr1[i]]++
 	}
-	for _, val := range arr2 {
-		countMap[val]++
+	
+	for i := 0; i < len(arr2); i++ {
+		countMap[arr2[i]]++
 	}
 
-	for key, count := range countMap {
-		if count == 1 {
+	keys := make([]string, 0, len(countMap))
+	for key := range countMap {
+		keys = append(keys, key)
+	}
+
+	sort.Strings(keys)
+	
+	for i := 0; i < len(keys); i++ {
+		key := keys[i]
+		if countMap[key] == 1 {
 			diffResult = append(diffResult, key)
 		}
 		uniqueResult = append(uniqueResult, key)
